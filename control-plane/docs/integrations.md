@@ -111,6 +111,7 @@ Default behavior:
 - `NEURON_RESERVATION_DURATION_MINUTES=2`
 - `NEURON_RESERVATION_KEEPALIVE_MINUTES=2`
 - `NEURON_WAIT_FOR_HEALTHY=true`
+- `NEURON_STRICT_PROVIDER_MATCH=true`
 
 When `NEURON_WAIT_FOR_HEALTHY` is enabled, the plugin blocks the chat message
 until all reservation targets report `healthy`. NeurOn performs any configured
@@ -124,6 +125,13 @@ publishes the first `trafficModelPrefixes` value as the display prefix, or
 `<target-id>/` when no prefixes are configured. Set the display prefix to `""`
 in JSON config, or `__empty__` in env-expanded config, when LiteLLM aliases the
 route prefix away for users.
+
+`NEURON_STRICT_PROVIDER_MATCH=true` requires `provider/model` requests from
+OpenCode to resolve to NeurOn targets with matching provider labels. Set
+`NEURON_STRICT_PROVIDER_MATCH=false` when OpenCode provider labels and NeurOn
+target provider labels intentionally differ; in that mode, the plugin allows an
+alias-based fallback only when the target match is unambiguous.
+
 The Admin target create and persisted-target edit forms expose
 `trafficModelPrefixes` as **LiteLLM model route prefixes**, so a value such as
 `clint-desktop/` links `clint-desktop/gemma-4-e2b` to the selected target

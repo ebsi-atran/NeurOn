@@ -39,7 +39,15 @@ NEURON_RESERVATION_KEEPALIVE_MINUTES=2
 NEURON_WAIT_FOR_HEALTHY=true
 NEURON_WAIT_TIMEOUT_SECONDS=600
 NEURON_WAIT_POLL_SECONDS=5
+NEURON_STRICT_PROVIDER_MATCH=true
 ```
+
+- `NEURON_STRICT_PROVIDER_MATCH=true` keeps provider matching strict (`provider/model`
+  must map to a target with the same provider label).
+- Set `NEURON_STRICT_PROVIDER_MATCH=false` when OpenCode provider labels (for example,
+  `litellm`) differ from NeurOn target provider labels (for example, `aws-ec2`), and
+  you still want alias-based model routing to work when the target match is
+  unambiguous.
 
 ## Model Mapping
 
